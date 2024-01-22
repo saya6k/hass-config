@@ -1,0 +1,146 @@
+#
+#     ______            _____                        __  _
+#    / ____/___  ____  / __(_)___ ___  ___________ _/ /_(_)___  ____
+#   / /   / __ \/ __ \/ /_/ / __ `/ / / / ___/ __ `/ __/ / __ \/ __ \
+#  / /___/ /_/ / / / / __/ / /_/ / /_/ / /  / /_/ / /_/ / /_/ / / / /
+#  \____/\____/_/ /_/_/ /_/\__, /\__,_/_/   \__,_/\__/_/\____/_/ /_/
+#                         /____/
+
+####################################################
+#                                                  #
+#                  Home Assistant                  #
+#                                                  #
+####################################################
+
+homeassistant:
+  external_url: !secret ha_external_url
+  internal_url: !secret ha_internal_url
+  unit_system: metric
+  temperature_unit: C
+  time_zone: Asia/Seoul
+  currency: KRW
+  packages: !include_dir_named ./packages/
+  customize:
+    sensor.template_sidebar:
+      friendly_name: ""
+  auth_providers:
+    - type: homeassistant
+    - type: command_line
+      command: "/config/custom_component/radius_auth/scripts/radius-auth.sh"
+      meta: true
+
+
+####################################################
+#                                                  #
+#                  Configurations                  #
+#                                                  #
+####################################################
+influxdb: !include ./configuration.d/influxdb.yaml
+o365: !include ./configuration.d/o365.yaml
+panel_iframe: !include ./configuration.d/iframe_panels.yaml
+template: !include ./configuration.d/sidebar.yaml
+ynab: !include ./configuration.d/ynab.yaml
+# Loads default set of integrations. Do not remove.
+default_config:
+my:
+
+battery_notes:
+  
+binary_sensor:
+  - platform: korean_workday
+
+calendar:
+  ##### CalDAV https://www.home-assistant.io/integrations/caldav
+  - platform: caldav
+    username: !secret saya6k_icloud_username
+    password: !secret saya6k_icloud_password
+    url: !secret icloud_caldav_address
+    custom_calendars:
+      - name: "saya6k"
+        calendar: "Agenda"
+        search: "개인"
+  
+####################################################
+#                                                  #
+#                        UI                        #
+#                                                  #
+####################################################
+frontend:
+  themes: !include_dir_merge_named ./UI/themes
+  extra_module_url:
+    - /hacsfiles/custom-brand-icons/custom-brand-icons.js
+    - /hacsfiles/hass-bha-icons/hass-bha-icons.js
+    - /hacsfiles/hass-custom-icons/hass-custom-icons.js
+    - /hacsfiles/hass-dual-color-icons/hass-dual-color-icons.js
+    - /hacsfiles/hass-hue-icons/hass-hue-icons.js
+    - /hacsfiles/lovelace-card-mod/card-mod.js
+    
+lovelace:
+  mode: yaml
+  resources: !include /config/lovelace-resources.yaml
+  dashboards: !include /config/lovelace-dashboards.yaml
+
+
+####################################################
+#                                                  #
+#                   Authentication                 #
+#                                                  #
+####################################################
+http:
+  server_port: 8123
+  # ssl_certificate: /ssl/caddy/certificates/acme-v02.api.letsencrypt.org-directory/home.hass.wiki/home.hass.wiki.crt
+  # ssl_key: /ssl/caddy/certificates/acme-v02.api.letsencrypt.org-directory/home.hass.wiki/home.hass.wiki.key
+  cors_allowed_origins:
+    - !secret ha_external_url
+  ip_ban_enabled: false
+  login_attempts_threshold: 100
+  use_x_forwarded_for: true
+  # use_x_frame_options: false
+  trusted_proxies:
+    - !secret ha_main_ip_address
+    - !secret ha_iot_ip_address
+    - 172.30.32.0/23
+    - '127.0.0.1'
+
+jwt_cookie:
+  domain: ".home.hass.wiki"
+  http_only: false
+  # secure: false
+  public_key_file: ./configuration.d/jwt_cookie.pem
+  private_key_file: ./configuration.d/jwt_privkey.key
+
+####################################################
+#                                                  #
+#                      Recorder                    #
+#                                                  #
+####################################################
+recorder:
+  db_url: !secret mariadb_url
+  auto_purge: true
+  auto_repack: true
+  # purge_keep_days: 2
+  commit_interval: 30
+  # max_event_size: 32168
+  exclude:
+    entities:
+      - sensor.freshrss_feed
+      - sensor.unifi_status_alerts
+      - sensor.products_shopping_list_with_grocy
+      - sensor.grocy_chores
+
+
+####################################################
+#                                                  #
+#                       Logger                     #
+#                                                  #
+####################################################
+logger:
+  default: warning
+  logs:
+    homeassistant.components.websocket_api: fatal
+    # custom_components.monitor_docker.helpers: error
+    # custom_components.grocy: debug
+    homeassistant.setup: error
+    custom_components.extended_openai_conversation: info
+    # custom_components.nespresso: debug
+
