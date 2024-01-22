@@ -1,0 +1,17 @@
+# ui-lovelace is default
+
+# ui-dashboard:
+  # mode: yaml
+  # filename: /config/UI/ui-dashboard.yaml
+  # title: Dashboard
+  # icon: mdi:gauge
+  # show_in_sidebar: true
+  # require_admin: false
+
+ui-rooms:
+  mode: yaml
+  filename: /config/UI/ui-rooms.yaml
+  title: Rooms
+  icon: phu:nest-hub
+  show_in_sidebar: false
+  require_admin: false

@@ -1,0 +1,58 @@
+button_card_templates: !include_dir_merge_named /config/UI/button_card_templates
+
+# swipe_nav:
+#   enable: true
+#   wrap: false
+#   swipe_amount: 30
+#   animate: swipe
+
+views:
+  # - !include UI/views/lovelace.yaml
+  - type: custom:grid-layout
+    title: Home
+    path: home
+    layout:
+      margin: 0
+      grid-gap: var(--custom-layout-card-padding)
+      grid-template-columns: repeat(4, 1fr) 0
+      grid-template-rows: 0 repeat(2, fit-content(100%)) 0fr
+      grid-template-areas: |
+        "sidebar  .           .       .       ."
+        "sidebar  livingroom  kitchen  bedroom  ."
+        "sidebar  media       et_cetera  house   ."
+        "sidebar  footer      footer  footer  ."
+      mediaquery:
+        "(max-width: 800px)":
+          grid-gap: calc(var(--custom-layout-card-padding) * 1.7)
+          grid-template-columns: 0 repeat(2, 1fr) 0
+          grid-template-rows: 0 repeat(5, fit-content(100%)) 0fr
+          grid-template-areas: |
+            ".  .           .        ."
+            ".  sidebar     sidebar  ."
+            ".  livingroom  bedroom   ."
+            ".  kitchen     et_cetera   ."
+            ".  media       house    ."
+            ".  footer      footer   ."
+            ".  .           .        ."
+        "(max-width: 1200px)":
+          grid-gap: var(--custom-layout-card-padding)
+          grid-template-columns: repeat(3, 1fr) 0
+          grid-template-rows: 0 repeat(3, fit-content(100%)) 0fr
+          grid-template-areas: |
+            "sidebar  .           .       ."
+            "sidebar  livingroom  bedroom  ."
+            "sidebar  kitchen     et_cetera ."
+            "sidebar  media       house     ."
+            "sidebar  footer      footer  ."
+            "sidebar  .           .       ."
+    badges: []
+    cards:
+      - !include /config/UI/cards/theme_config.yaml
+      - !include /config/UI/cards/lovelace/sidebar.yaml
+      - !include /config/UI/cards/lovelace/footer.yaml
+      - !include /config/UI/cards/rooms/livingroom.yaml
+      - !include /config/UI/cards/rooms/bedroom.yaml
+      - !include /config/UI/cards/rooms/kitchen.yaml
+      - !include /config/UI/cards/rooms/house.yaml
+      - !include /config/UI/cards/rooms/media.yaml
+      - !include /config/UI/cards/rooms/et_cetera.yaml
