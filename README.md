@@ -16,7 +16,7 @@ This is my Home Assistant documentation, updated on 2025-02-14.
 
 I used Home Assistant in 2018 and then migrated to Apple Home.
 
-I started using Home Assistant again in 2022. Now, it has grown significantly, with a total of 1201 entities for now.
+I started using Home Assistant again in 2022. Now, it has grown significantly, with a total of 1202 entities for now.
 
 If you need more insights from my smart home other than auto generated document, Find below:
 
@@ -84,8 +84,8 @@ media_players | 16
 sensors | 723
 switches | 35
 switches | 35
-others | 234
-**Total** | **1201**
+others | 235
+**Total** | **1202**
 
 
 Component | Version
@@ -306,6 +306,7 @@ Name | Description
 
 Name | Description
 -- | --
+[Visionos Theme](https://github.com/Nezz/homeassistant-visionos-theme) | Theme inspired by visionOS for Home Assistant
 
 </details>
 
@@ -318,15 +319,15 @@ Huge Thanks to [Joris Roovers](https://github.com/jorisroovers), this work is he
 <!-- Footnotes -->
 [^1]: UI Configuration
 
-[commits-shield]: https://img.shields.io/github/commit-activity/y/saya6k/home-assistant-config.svg
-[commits]: https://github.com/saya6k/home-assistant-config/commits/master
-[contributors]: https://github.com/saya6k/home-assistant-config/graphs/contributors
-[saya]: https://github.com/saya6k
+[commits-shield]: https://img.shields.io/github/commit-activity/y/saya6k/hass-config.svg
+[commits]: https://github.com/saya6k/hass-config/commits/master
+[contributors]: https://github.com/saya6k/hass-config/graphs/contributors
+[saya6k]: https://github.com/saya6k
 [home-assistant]: https://home-assistant.io
-[issue]: https://github.com/saya6k/home-assistant-config/issues
-[license-shield]: https://img.shields.io/github/license/saya6k/home-assistant-config.svg
+[issue]: https://github.com/saya6k/hass-config/issues
+[license-shield]: https://img.shields.io/github/license/saya6k/hass-config.svg
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2025.svg
-[last-commit-shield]: https://img.shields.io/github/last-commit/saya6k/home-assistant-config.svg
-[stars-shield]: https://img.shields.io/github/stars/saya6k/home-assistant-config.svg?style=social&label=Stars
-[forks-shield]: https://img.shields.io/github/forks/saya6k/home-assistant-config.svg?style=social&label=Forks
-[watchers-shield]: https://img.shields.io/github/watchers/saya6k/home-assistant-config.svg?style=social&label=Watchers
+[last-commit-shield]: https://img.shields.io/github/last-commit/saya6k/hass-config.svg
+[stars-shield]: https://img.shields.io/github/stars/saya6k/hass-config.svg?style=social&label=Stars
+[forks-shield]: https://img.shields.io/github/forks/saya6k/hass-config.svg?style=social&label=Forks
+[watchers-shield]: https://img.shields.io/github/watchers/saya6k/hass-config.svg?style=social&label=Watchers
