@@ -13,73 +13,43 @@
 ####################################################
 
 homeassistant:
-  external_url: !secret ha_external_url
-  internal_url: !secret ha_internal_url
-  unit_system: metric
-  temperature_unit: C
-  time_zone: Asia/Seoul
-  currency: KRW
   packages: !include_dir_named ./packages/
-  customize:
-    sensor.template_sidebar:
-      friendly_name: ""
-  auth_providers:
-    - type: homeassistant
-    - type: command_line
-      command: "/config/custom_component/radius_auth/scripts/radius-auth.sh"
-      meta: true
-
+  allowlist_external_dirs:
+    - /config/docs/snapshots
 
 ####################################################
 #                                                  #
 #                  Configurations                  #
 #                                                  #
 ####################################################
-influxdb: !include ./configuration.d/influxdb.yaml
-o365: !include ./configuration.d/o365.yaml
-panel_iframe: !include ./configuration.d/iframe_panels.yaml
-template: !include ./configuration.d/sidebar.yaml
-ynab: !include ./configuration.d/ynab.yaml
+
 # Loads default set of integrations. Do not remove.
 default_config:
 my:
 
-battery_notes:
-  
-binary_sensor:
-  - platform: korean_workday
+automation: !include ./automations.yaml
+scene: !include ./scenes.yaml
+script: !include ./scripts.yaml
 
-calendar:
-  ##### CalDAV https://www.home-assistant.io/integrations/caldav
-  - platform: caldav
-    username: !secret saya6k_icloud_username
-    password: !secret saya6k_icloud_password
-    url: !secret icloud_caldav_address
-    custom_calendars:
-      - name: "saya6k"
-        calendar: "Agenda"
-        search: "개인"
-  
 ####################################################
 #                                                  #
 #                        UI                        #
 #                                                  #
 ####################################################
 frontend:
-  themes: !include_dir_merge_named ./UI/themes
+  themes: !include_dir_merge_named ./themes
   extra_module_url:
     - /hacsfiles/custom-brand-icons/custom-brand-icons.js
+    - /hacsfiles/Bubble-Card/bubble-pop-up.js
     - /hacsfiles/hass-bha-icons/hass-bha-icons.js
     - /hacsfiles/hass-custom-icons/hass-custom-icons.js
     - /hacsfiles/hass-dual-color-icons/hass-dual-color-icons.js
     - /hacsfiles/hass-hue-icons/hass-hue-icons.js
+    - /hacsfiles/ha-knx-uf-iconset/ha-knx-uf-iconset.js
     - /hacsfiles/lovelace-card-mod/card-mod.js
     
 lovelace:
-  mode: yaml
-  resources: !include /config/lovelace-resources.yaml
-  dashboards: !include /config/lovelace-dashboards.yaml
-
+  mode: storage
 
 ####################################################
 #                                                  #
@@ -87,27 +57,23 @@ lovelace:
 #                                                  #
 ####################################################
 http:
-  server_port: 8123
-  # ssl_certificate: /ssl/caddy/certificates/acme-v02.api.letsencrypt.org-directory/home.hass.wiki/home.hass.wiki.crt
-  # ssl_key: /ssl/caddy/certificates/acme-v02.api.letsencrypt.org-directory/home.hass.wiki/home.hass.wiki.key
+  # server_host: "0.0.0.0, ::"
+  # server_port: 8123
   cors_allowed_origins:
     - !secret ha_external_url
-  ip_ban_enabled: false
-  login_attempts_threshold: 100
+    - https://www.home-assistant.io
+    - https://google.com
   use_x_forwarded_for: true
-  # use_x_frame_options: false
+  # use_x_frame_options: true
+  # ssl_certificate: /ssl/fullchain.pem
+  # ssl_key: /ssl/privkey.pem
   trusted_proxies:
     - !secret ha_main_ip_address
-    - !secret ha_iot_ip_address
-    - 172.30.32.0/23
+    # - 172.30.32.0/23
+    - 172.30.33.0/24
     - '127.0.0.1'
-
-jwt_cookie:
-  domain: ".home.hass.wiki"
-  http_only: false
-  # secure: false
-  public_key_file: ./configuration.d/jwt_cookie.pem
-  private_key_file: ./configuration.d/jwt_privkey.key
+  ip_ban_enabled: false
+  login_attempts_threshold: 5
 
 ####################################################
 #                                                  #
@@ -115,19 +81,52 @@ jwt_cookie:
 #                                                  #
 ####################################################
 recorder:
-  db_url: !secret mariadb_url
+  db_url: !secret recorder_mariadb_homeassistant_url
   auto_purge: true
   auto_repack: true
   # purge_keep_days: 2
   commit_interval: 30
   # max_event_size: 32168
-  exclude:
+  include:
     entities:
-      - sensor.freshrss_feed
-      - sensor.unifi_status_alerts
-      - sensor.products_shopping_list_with_grocy
-      - sensor.grocy_chores
-
+      - sensor.saya6k_hass_config_stars
+      - sensor.saya6k_hassio_addons_stars
+  #   domains:
+  #     - light #Include all entities from light domain  
+  exclude:
+    domains:
+      - automation
+      - device_tracker
+      - event
+      - media_player
+      - sun
+      - update
+      - weather
+    entity_globs:
+      - sensor.sun*
+      - sensor.17track_*
+      - sensor.wn_*_briefing
+      - sensor.wn_*_comment
+      - switch.adaptive_lighting_*
+      - sensor.discord_*
+      - sensor.fireflyiii_*
+      - sensor.saya6k_hass_config_*
+      - sensor.saya6'_hassio_addons_*
+      - sensor.grocy_*
+      - sensor.icloud3_*
+      - binary_sensor.*_occupancy # Exclude all entities from occupancy glob
+      - binary_sensor.*_motion # Exclude all entities from occupancy glob
+      - sensor.*beoseu_docag_jeongbo*
+      - sensor.subway*
+      - binary_sensor.any*
+      - binary_sensor.all*
+      - sensor.count*
+      - sensor.template_domain_counter
+    entities:
+      - sensor.date
+      - sensor.uptime
+    event_types: # Exclude an event_type
+      - call_service
 
 ####################################################
 #                                                  #
@@ -138,9 +137,193 @@ logger:
   default: warning
   logs:
     homeassistant.components.websocket_api: fatal
-    # custom_components.monitor_docker.helpers: error
-    # custom_components.grocy: debug
     homeassistant.setup: error
-    custom_components.extended_openai_conversation: info
-    # custom_components.nespresso: debug
+    homeassistant.components.conversation: debug
+    homeassistant.components.intent: debug
 
+####################################################
+#                                                  #
+#               Long Term History                  #
+#                                                  #
+####################################################
+prometheus:
+  namespace: hass
+  filter:
+    include_entities:
+
+      #################################
+      #                               #
+      #             Energy            #
+      #                               #
+      #################################
+      
+      #             Total
+      - sensor.utility_total_electricity
+      - sensor.utility_total_gas
+      - sensor.utility_total_water
+      #
+      #         Monthly Energy
+      - sensor.utility_this_month_electricity
+      - sensor.utility_this_month_gas
+      - sensor.utility_this_month_water
+      
+      #          Daily Energy
+      - sensor.utility_this_day_electricity
+      - sensor.utility_this_day_gas
+      - sensor.utility_this_day_water
+      
+      #          Energy per Area
+      - sensor.all_bedroom_energy_use
+      - sensor.all_kitchen_energy_use
+      - sensor.all_living_room_energy_use
+      - sensor.all_unaccounted_energy_use
+      
+      #         Energy per Domain
+      - sensor.all_hvac_energy_use
+      - sensor.all_light_energy_use
+      - sensor.all_media_player_energy_use
+      
+      #          Power Total
+      - sensor.template_total_power
+      
+      #         Power per Area
+      - sensor.all_bedroom_power_use
+      - sensor.all_kitchen_power_use
+      - sensor.all_living_room_power_use
+      - sensor.all_unaccounted_power_use
+      
+      #         Power per Domain
+      - sensor.all_hvac_power_use
+      - sensor.all_light_power_use
+      - sensor.all_media_player_power_use
+      
+      #################################
+      #                               #
+      #       Indoor Environment      #
+      #                               #
+      #################################
+      
+      #          Total
+      - sensor.indoor_average_temperature
+      - sensor.indoor_average_humidity
+      
+      #          Living Room
+      - sensor.living_room_average_temperature
+      - sensor.living_room_average_humidity
+      
+      #          Bedroom
+      - sensor.bedroom_average_temperature
+      - sensor.bedroom_average_humidity
+      
+      #          Kitchen
+      - sensor.kitchen_average_temperature
+      - sensor.kitchen_average_humidity
+      
+      #          Powder Room
+      - sensor.powder_room_average_humidity
+      - sensor.powder_room_average_humidity
+      
+      #################################
+      #                               #
+      #        Home Assistant         #
+      #                               #
+      #################################
+      
+      # Home Assistant System Monitor
+      - sensor.processor_use
+      - sensor.disk_use_percent
+      - sensor.memory_use_percent
+      
+      # Home Assistant Network
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.speedtest_ping
+
+      # Home Assistant Statistics
+      - sensor.integrations
+      - sensor.custom_integrations
+      - sensor.areas
+      # - sensor.zones # In Entity Domains Counter
+      - sensor.devices
+      - sensor.entities
+
+      # Home Assistant DB Size
+      - sensor.homeassistant_db_size
+      - sensor.victoriametrics_db_size
+      - sensor.home_assistant_log_size
+
+      # Entity Domains Counter
+      - sensor.air_quality
+      - sensor.alarm_control_panels
+      - sensor.automations
+      - sensor.binary_sensors
+      - sensor.buttons
+      - sensor.calendars
+      - sensor.cameras
+      - sensor.climate
+      - sensor.covers
+      - sensor.dates
+      - sensor.datetimes
+      - sensor.device_trackers
+      - sensor.fans
+      - sensor.humidifiers
+      - sensor.images
+      - sensor.input_booleans
+      - sensor.input_buttons
+      - sensor.input_datetimes
+      - sensor.input_numbers
+      - sensor.input_selects
+      - sensor.input_texts
+      - sensor.lights
+      - sensor.locks
+      - sensor.media_players
+      - sensor.numbers
+      - sensor.persons
+      - sensor.remotes
+      - sensor.scenes
+      - sensor.scripts
+      - sensor.selects
+      - sensor.sensors
+      - sensor.sirens
+      - sensor.stt
+      - sensor.suns
+      - sensor.switches
+      - sensor.texts
+      - sensor.times
+      - sensor.tts
+      - sensor.update
+      - sensor.vacuums
+      - sensor.water_heaters
+      - sensor.weather
+      - sensor.zones
+
+      #################################
+      #                               #
+      #            Github             #
+      #                               #
+      #################################
+
+      - sensor.saya6k_hass_config_stars
+
+command_line:
+  - sensor:
+      name: Home Assistant Log Size
+      icon: mdi:file-document
+      command: "du -m home-assistant.log | cut -f1"
+      device_class: data_size
+      unit_of_measurement: MB
+      value_template: "{{ value|int }}"
+      scan_interval: 3600
+
+  - sensor:
+      name: "VictoriaMetrics DB Size"
+      icon: mdi:database
+      command: "/usr/bin/du -s /share/victoria-metrics-data | cut -f1"
+      value_template: "{{ (value.split('\t')[0]|int/1000)|round(1) }}"
+      device_class: data_size
+      unit_of_measurement: "MB"
+      unique_id: "victoriametrics_db_size"
+      scan_interval: 600
+
+shell_command:
+  purge_log: truncate -s 0 /config/home-assistant.log
