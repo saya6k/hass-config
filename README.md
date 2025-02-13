@@ -12,11 +12,11 @@
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/my7nmfcm92k)
 
-This is my Home Assistant documentation, updated on 2025-02-13.
+This is my Home Assistant documentation, updated on 2025-02-14.
 
 I used Home Assistant in 2018 and then migrated to Apple Home.
 
-I started using Home Assistant again in 2022. Now, it has grown significantly, with a total of 1166 entities for now.
+I started using Home Assistant again in 2022. Now, it has grown significantly, with a total of 1201 entities for now.
 
 If you need more insights from my smart home other than auto generated document, Find below:
 
@@ -58,15 +58,15 @@ If you need more insights from my smart home other than auto generated document,
   </tr>
   <tr>
     <td>
-      <img alt="Monitoring Dashboard" src="docs/images/snapshots/lovelace.jpg"><br>
+      <img alt="Monitoring Dashboard" src="docs/snapshots/lovelace.jpg"><br>
       Lovelace Dashboard
     </td>
     <td>
-      <img alt="Zigbee Network Visualization" src="docs/images/zigbee-network.png"><br>
+      <img alt="Zigbee Network Visualization" src="docs/snapshots/zigbee-network.png"><br>
       Zigbee Network Visualization
     </td>
     <td>
-      <img alt="Energy Dashboard" src="docs/images/lovelace-energy.png"><br>
+      <img alt="Energy Dashboard" src="docs/snapshots/lovelace-energy.png"><br>
       Energy Dashboard
     </td>
   </tr>
@@ -76,16 +76,16 @@ If you need more insights from my smart home other than auto generated document,
 
 Domain | Value
 -- | --
-automations | 25
-binary_sensors | 128
-device_trackers | 22
+automations | 27
+binary_sensors | 131
+device_trackers | 25
 lights | 10
 media_players | 16
-sensors | 705
+sensors | 723
 switches | 35
 switches | 35
-others | 225
-**Total** | **1166**
+others | 234
+**Total** | **1201**
 
 
 Component | Version
@@ -107,6 +107,7 @@ Integration | Configuration
 [<img src="https://brands.home-assistant.io/_/anthropic/icon.png" height="24"/>](https://brands.home-assistant.io/_/anthropic/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/anthropic/icon.png" height="24"/>](https://brands.home-assistant.io/_/anthropic/icon.png#gh-light-mode-only) [Anthropic Conversation](https://home-assistant.io/integrations/anthropic) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/apple_tv/icon.png" height="24"/>](https://brands.home-assistant.io/_/apple_tv/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/apple_tv/icon.png" height="24"/>](https://brands.home-assistant.io/_/apple_tv/icon.png#gh-light-mode-only) [Apple TV](https://home-assistant.io/integrations/apple_tv) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/automation/icon.png" height="24"/>](https://brands.home-assistant.io/_/automation/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/automation/icon.png" height="24"/>](https://brands.home-assistant.io/_/automation/icon.png#gh-light-mode-only) [Automation](https://home-assistant.io/integrations/automation) | [./automations.yaml](./automations.yaml)
+[<img src="https://brands.home-assistant.io/_/bluetooth/icon.png" height="24"/>](https://brands.home-assistant.io/_/bluetooth/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/bluetooth/icon.png" height="24"/>](https://brands.home-assistant.io/_/bluetooth/icon.png#gh-light-mode-only) [Bluetooth](https://home-assistant.io/integrations/bluetooth) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/caldav/icon.png" height="24"/>](https://brands.home-assistant.io/_/caldav/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/caldav/icon.png" height="24"/>](https://brands.home-assistant.io/_/caldav/icon.png#gh-light-mode-only) [CalDAV](https://home-assistant.io/integrations/caldav) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/calendar/icon.png" height="24"/>](https://brands.home-assistant.io/_/calendar/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/calendar/icon.png" height="24"/>](https://brands.home-assistant.io/_/calendar/icon.png#gh-light-mode-only) [Calendar](https://home-assistant.io/integrations/calendar) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/cert_expiry/icon.png" height="24"/>](https://brands.home-assistant.io/_/cert_expiry/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/cert_expiry/icon.png" height="24"/>](https://brands.home-assistant.io/_/cert_expiry/icon.png#gh-light-mode-only) [Certificate Expiry](https://home-assistant.io/integrations/cert_expiry) | Config flow[^1]
@@ -127,7 +128,6 @@ Integration | Configuration
 [<img src="https://brands.home-assistant.io/_/google_translate/icon.png" height="24"/>](https://brands.home-assistant.io/_/google_translate/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/google_translate/icon.png" height="24"/>](https://brands.home-assistant.io/_/google_translate/icon.png#gh-light-mode-only) [Google Translate text-to-speech](https://home-assistant.io/integrations/google_translate) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/history/icon.png" height="24"/>](https://brands.home-assistant.io/_/history/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/history/icon.png" height="24"/>](https://brands.home-assistant.io/_/history/icon.png#gh-light-mode-only) [History](https://home-assistant.io/integrations/history) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/holiday/icon.png" height="24"/>](https://brands.home-assistant.io/_/holiday/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/holiday/icon.png" height="24"/>](https://brands.home-assistant.io/_/holiday/icon.png#gh-light-mode-only) [Holiday](https://home-assistant.io/integrations/holiday) | Config flow[^1]
-[<img src="https://brands.home-assistant.io/_/cloud/icon.png" height="24"/>](https://brands.home-assistant.io/_/cloud/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/cloud/icon.png" height="24"/>](https://brands.home-assistant.io/_/cloud/icon.png#gh-light-mode-only) [Home Assistant Cloud](https://home-assistant.io/integrations/cloud) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/homeassistant/icon.png" height="24"/>](https://brands.home-assistant.io/_/homeassistant/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/homeassistant/icon.png" height="24"/>](https://brands.home-assistant.io/_/homeassistant/icon.png#gh-light-mode-only) [Home Assistant Core Integration](https://home-assistant.io/integrations/homeassistant) | [./configuration.yaml](./configuration.yaml)
 [<img src="https://brands.home-assistant.io/_/http/icon.png" height="24"/>](https://brands.home-assistant.io/_/http/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/http/icon.png" height="24"/>](https://brands.home-assistant.io/_/http/icon.png#gh-light-mode-only) [HTTP](https://home-assistant.io/integrations/http) | [./configuration.yaml](./configuration.yaml)
 [<img src="https://brands.home-assistant.io/_/imap/icon.png" height="24"/>](https://brands.home-assistant.io/_/imap/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/imap/icon.png" height="24"/>](https://brands.home-assistant.io/_/imap/icon.png#gh-light-mode-only) [IMAP](https://home-assistant.io/integrations/imap) | [./packages/imap_content.yaml](./packages/imap_content.yaml)
@@ -137,6 +137,7 @@ Integration | Configuration
 [<img src="https://brands.home-assistant.io/_/local_todo/icon.png" height="24"/>](https://brands.home-assistant.io/_/local_todo/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/local_todo/icon.png" height="24"/>](https://brands.home-assistant.io/_/local_todo/icon.png#gh-light-mode-only) [Local To Do](https://home-assistant.io/integrations/local_todo) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/logger/icon.png" height="24"/>](https://brands.home-assistant.io/_/logger/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/logger/icon.png" height="24"/>](https://brands.home-assistant.io/_/logger/icon.png#gh-light-mode-only) [Logger](https://home-assistant.io/integrations/logger) | [./configuration.yaml](./configuration.yaml)
 [<img src="https://brands.home-assistant.io/_/lovelace/icon.png" height="24"/>](https://brands.home-assistant.io/_/lovelace/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/lovelace/icon.png" height="24"/>](https://brands.home-assistant.io/_/lovelace/icon.png#gh-light-mode-only) [Lovelace](https://home-assistant.io/integrations/lovelace) | [./ui-lovelace.yaml](./ui-lovelace.yaml)
+[<img src="https://brands.home-assistant.io/_/manual/icon.png" height="24"/>](https://brands.home-assistant.io/_/manual/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/manual/icon.png" height="24"/>](https://brands.home-assistant.io/_/manual/icon.png#gh-light-mode-only) [Manual Alarm control panel](https://home-assistant.io/integrations/manual) | [./package/alarm_control_panel.yaml](./package/alarm_control_panel.yaml)
 [<img src="https://brands.home-assistant.io/_/matter/icon.png" height="24"/>](https://brands.home-assistant.io/_/matter/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/matter/icon.png" height="24"/>](https://brands.home-assistant.io/_/matter/icon.png#gh-light-mode-only) [Matter (BETA)](https://home-assistant.io/integrations/matter) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/mobile_app/icon.png" height="24"/>](https://brands.home-assistant.io/_/mobile_app/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/mobile_app/icon.png" height="24"/>](https://brands.home-assistant.io/_/mobile_app/icon.png#gh-light-mode-only) [Mobile App](https://home-assistant.io/integrations/mobile_app) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/moon/icon.png" height="24"/>](https://brands.home-assistant.io/_/moon/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/moon/icon.png" height="24"/>](https://brands.home-assistant.io/_/moon/icon.png#gh-light-mode-only) [Moon](https://home-assistant.io/integrations/moon) | Config flow[^1]
@@ -146,10 +147,13 @@ Integration | Configuration
 [<img src="https://brands.home-assistant.io/_/notify/icon.png" height="24"/>](https://brands.home-assistant.io/_/notify/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/notify/icon.png" height="24"/>](https://brands.home-assistant.io/_/notify/icon.png#gh-light-mode-only) [notify](https://home-assistant.io/integrations/notify) | [./packages/alerts_and_notifications.yaml](./packages/alerts_and_notifications.yaml)
 [<img src="https://brands.home-assistant.io/_/otbr/icon.png" height="24"/>](https://brands.home-assistant.io/_/otbr/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/otbr/icon.png" height="24"/>](https://brands.home-assistant.io/_/otbr/icon.png#gh-light-mode-only) [Open Thread Border Router](https://home-assistant.io/integrations/otbr) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/openai_conversation/icon.png" height="24"/>](https://brands.home-assistant.io/_/openai_conversation/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/openai_conversation/icon.png" height="24"/>](https://brands.home-assistant.io/_/openai_conversation/icon.png#gh-light-mode-only) [OpenAI Conversation](https://home-assistant.io/integrations/openai_conversation) | Config flow[^1]
+[<img src="https://brands.home-assistant.io/_/oralb/icon.png" height="24"/>](https://brands.home-assistant.io/_/oralb/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/oralb/icon.png" height="24"/>](https://brands.home-assistant.io/_/oralb/icon.png#gh-light-mode-only) [Oral-B](https://home-assistant.io/integrations/oralb) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/ping/icon.png" height="24"/>](https://brands.home-assistant.io/_/ping/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/ping/icon.png" height="24"/>](https://brands.home-assistant.io/_/ping/icon.png#gh-light-mode-only) [Ping (ICMP)](https://home-assistant.io/integrations/ping) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/plex/icon.png" height="24"/>](https://brands.home-assistant.io/_/plex/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/plex/icon.png" height="24"/>](https://brands.home-assistant.io/_/plex/icon.png#gh-light-mode-only) [Plex Media Server](https://home-assistant.io/integrations/plex) | Config flow[^1]
+[<img src="https://brands.home-assistant.io/_/private_ble_device/icon.png" height="24"/>](https://brands.home-assistant.io/_/private_ble_device/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/private_ble_device/icon.png" height="24"/>](https://brands.home-assistant.io/_/private_ble_device/icon.png#gh-light-mode-only) [Private BLE Device](https://home-assistant.io/integrations/private_ble_device) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/profiler/icon.png" height="24"/>](https://brands.home-assistant.io/_/profiler/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/profiler/icon.png" height="24"/>](https://brands.home-assistant.io/_/profiler/icon.png#gh-light-mode-only) [Profiler](https://home-assistant.io/integrations/profiler) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/prometheus/icon.png" height="24"/>](https://brands.home-assistant.io/_/prometheus/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/prometheus/icon.png" height="24"/>](https://brands.home-assistant.io/_/prometheus/icon.png#gh-light-mode-only) [Prometheus](https://home-assistant.io/integrations/prometheus) | [./configuration.yaml](./configuration.yaml)
+[<img src="https://brands.home-assistant.io/_/proximity/icon.png" height="24"/>](https://brands.home-assistant.io/_/proximity/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/proximity/icon.png" height="24"/>](https://brands.home-assistant.io/_/proximity/icon.png#gh-light-mode-only) [Proximity](https://home-assistant.io/integrations/proximity) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/recorder/icon.png" height="24"/>](https://brands.home-assistant.io/_/recorder/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/recorder/icon.png" height="24"/>](https://brands.home-assistant.io/_/recorder/icon.png#gh-light-mode-only) [Recorder](https://home-assistant.io/integrations/recorder) | [./configuration.yaml](./configuration.yaml)
 [<img src="https://brands.home-assistant.io/_/scene/icon.png" height="24"/>](https://brands.home-assistant.io/_/scene/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/scene/icon.png" height="24"/>](https://brands.home-assistant.io/_/scene/icon.png#gh-light-mode-only) [Scene](https://home-assistant.io/integrations/scene) | [./scenes.yaml](./scenes.yaml)
 [<img src="https://brands.home-assistant.io/_/script/icon.png" height="24"/>](https://brands.home-assistant.io/_/script/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/script/icon.png" height="24"/>](https://brands.home-assistant.io/_/script/icon.png#gh-light-mode-only) [Script](https://home-assistant.io/integrations/script) | [./scripts.yaml](./scripts.yaml)
