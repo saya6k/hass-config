@@ -691,11 +691,7 @@ views:
       card_type: separator
       icon: mdi:star
       name: 즐겨찾기
-      sub_button:
-      - icon: mdi:alarm-check
-        tap_action:
-          action: navigate
-          navigation_path: /lovelace/scheduler
+      sub_button: []
       type: custom:bubble-card
       visibility:
       - above: 0
@@ -5661,35 +5657,6 @@ views:
   subview: true
   title: Game
   type: sections
-- cards:
-  - display_options:
-      icon: action
-      primary_info: default
-      secondary_info:
-      - time
-      - days
-    exclude: []
-    include:
-    - alarm_control_panel
-    - climate
-    - cover
-    - fan
-    - light
-    - lock
-    - media_player
-    - scene
-    - script
-    show_header_toggle: false
-    sort_by:
-    - state
-    - title
-    title: false
-    type: custom:scheduler-card
-  icon: mdi:alarm-check
-  path: scheduler
-  subview: true
-  title: 자동화
-  type: panel
 - badges:
   - card:
       alignment: center

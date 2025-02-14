@@ -16,7 +16,7 @@ This is my Home Assistant documentation, updated on 2025-02-14.
 
 I used Home Assistant in 2018 and then migrated to Apple Home.
 
-I started using Home Assistant again in 2022. Now, it has grown significantly, with a total of 1180 entities for now.
+I started using Home Assistant again in 2022. Now, it has grown significantly, with a total of 1174 entities for now.
 
 If you need more insights from my smart home other than auto generated document, Find below:
 
@@ -76,16 +76,16 @@ If you need more insights from my smart home other than auto generated document,
 
 Domain | Value
 -- | --
-automations | 27
+automations | 26
 binary_sensors | 131
 device_trackers | 7
 lights | 10
 media_players | 16
 sensors | 721
-switches | 35
-switches | 35
-others | 233
-**Total** | **1180**
+switches | 33
+switches | 33
+others | 230
+**Total** | **1174**
 
 
 Component | Version
@@ -202,8 +202,6 @@ Name | Description
 [<img src="https://brands.home-assistant.io/_/lastfm_scrobbler/icon.png" height="24"/>](https://brands.home-assistant.io/_/lastfm_scrobbler/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/lastfm_scrobbler/icon.png" height="24"/>](https://brands.home-assistant.io/_/lastfm_scrobbler/icon.png#gh-light-mode-only) [Lastfm Scrobbler](https://github.com/valentin-gosselin/lastfm-scrobbler-ha-integration) | An Home Assistant integration scrobble to last.fm
 [<img src="https://brands.home-assistant.io/_/life360/icon.png" height="24"/>](https://brands.home-assistant.io/_/life360/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/life360/icon.png" height="24"/>](https://brands.home-assistant.io/_/life360/icon.png#gh-light-mode-only) [Life360](https://github.com/pnbruckner/ha-life360) | A Home Assistant integration for Life360.
 [<img src="https://brands.home-assistant.io/_/mediarr/icon.png" height="24"/>](https://brands.home-assistant.io/_/mediarr/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/mediarr/icon.png" height="24"/>](https://brands.home-assistant.io/_/mediarr/icon.png#gh-light-mode-only) [Mediarr](https://github.com/Vansmak/mediarr_sensor) | None
-[<img src="https://brands.home-assistant.io/_/edge_tts/icon.png" height="24"/>](https://brands.home-assistant.io/_/edge_tts/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/edge_tts/icon.png" height="24"/>](https://brands.home-assistant.io/_/edge_tts/icon.png#gh-light-mode-only) [Microsoft Edge Tts](https://github.com/hasscc/hass-edge-tts) | 🗣️ Microsoft Edge TTS for Home Assistant, no need for app_key
-[<img src="https://brands.home-assistant.io/_/scheduler/icon.png" height="24"/>](https://brands.home-assistant.io/_/scheduler/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/scheduler/icon.png" height="24"/>](https://brands.home-assistant.io/_/scheduler/icon.png#gh-light-mode-only) [Scheduler Component](https://github.com/nielsfaber/scheduler-component) | Custom component for HA that enables the creation of scheduler entities
 [<img src="https://brands.home-assistant.io/_/simpleicons/icon.png" height="24"/>](https://brands.home-assistant.io/_/simpleicons/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/simpleicons/icon.png" height="24"/>](https://brands.home-assistant.io/_/simpleicons/icon.png#gh-light-mode-only) [Simpleicons](https://github.com/vigonotion/hass-simpleicons) | Use Simple Icons in Home Assistant
 [<img src="https://brands.home-assistant.io/_/spook/icon.png" height="24"/>](https://brands.home-assistant.io/_/spook/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/spook/icon.png" height="24"/>](https://brands.home-assistant.io/_/spook/icon.png#gh-light-mode-only) [Spook 👻 Your Homie](https://github.com/frenck/spook) | A scary 👻 powerful toolbox 🧰 for Home Assistant 🏡
 [<img src="https://brands.home-assistant.io/_/steam_wishlist/icon.png" height="24"/>](https://brands.home-assistant.io/_/steam_wishlist/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/steam_wishlist/icon.png" height="24"/>](https://brands.home-assistant.io/_/steam_wishlist/icon.png#gh-light-mode-only) [Steam Wishlist](https://github.com/boralyl/steam-wishlist) | A home assistant integration that monitors games on sale on your Steam wishlist.
@@ -225,29 +223,29 @@ I use Home Assistant as my main home server, so there are lots of add-ons. I cou
 
 Name | Version | Description
 -- | -- | --
-Advanced SSH & Web Terminal | 20.0.0 | 
-DOODS2 | 1 | 
-ESPHome Device Builder | 2024.12.4 | 
-File editor | 5.8.0 | 
-Firefly III | dev | 
-Grocy | 0.23.0 | 
-HomeNetwork for Hillstate | 1.1.6 | 
-iSponsorBlockTV add-on | 2.1.2 | 
-Let's Encrypt | 5.2.12 | 
-Mailserver | 3.0.1 | 
-MariaDB | 2.7.2 | 
-Matter Server | 7.0.0 | 
-Mosquitto broker | 6.5.0 | 
-MQTT Explorer | browser-1.0.1 | 
-Music Assistant Server | 2.3.6 | 
-NGINX Home Assistant SSL proxy | 3.11.1 | 
-OpenThread Border Router | 2.13.0 | 
-phpMyAdmin | 0.11.0 | 
-Samba share | 12.4.0 | 
-Studio Code Server | 5.18.1 | 
-Victoria Metrics | 1.110.0 | 
-Whisper | 2.4.0 | 
-ytdlp2STRM | 1.0.0 | 
+[Advanced SSH & Web Terminal](/hassio/addon/a0d7b954_ssh) | 20.0.0 | 
+[DOODS2](/hassio/addon/d5f40609_doods2) | 1 | 
+[ESPHome Device Builder](/hassio/addon/5c53de3b_esphome) | 2024.12.4 | 
+[File editor](/hassio/addon/core_configurator) | 5.8.0 | 
+[Firefly III](/hassio/addon/2a68c650_firefly-iii) | dev | 
+[Grocy](/hassio/addon/a0d7b954_grocy) | 0.23.0 | 
+[HomeNetwork for Hillstate](/hassio/addon/3ef9777c_yogyui_homenet_hillstate) | 1.1.6 | 
+[iSponsorBlockTV add-on](/hassio/addon/932a64e5_isponsorblocktv) | 2.1.2 | 
+[Let's Encrypt](/hassio/addon/core_letsencrypt) | 5.2.12 | 
+[Mailserver](/hassio/addon/32b8266a_mailserver) | 3.0.1 | 
+[MariaDB](/hassio/addon/core_mariadb) | 2.7.2 | 
+[Matter Server](/hassio/addon/core_matter_server) | 7.0.0 | 
+[Mosquitto broker](/hassio/addon/core_mosquitto) | 6.5.0 | 
+[MQTT Explorer](/hassio/addon/2ad4c73a_mqtt-explorer) | browser-1.0.1 | 
+[Music Assistant Server](/hassio/addon/d5369777_music_assistant) | 2.3.6 | 
+[NGINX Home Assistant SSL proxy](/hassio/addon/core_nginx_proxy) | 3.11.1 | 
+[OpenThread Border Router](/hassio/addon/core_openthread_border_router) | 2.13.0 | 
+[phpMyAdmin](/hassio/addon/a0d7b954_phpmyadmin) | 0.11.0 | 
+[Samba share](/hassio/addon/core_samba) | 12.4.0 | 
+[Studio Code Server](/hassio/addon/a0d7b954_vscode) | 5.18.1 | 
+[Victoria Metrics](/hassio/addon/8f49de54_victoria_metrics) | 1.110.0 | 
+[Whisper](/hassio/addon/core_whisper) | 2.4.0 | 
+[ytdlp2STRM](/hassio/addon/local_ytdlp2strm) | 1.0.0 | 
 
 </details>
 
@@ -293,7 +291,6 @@ Name | Description
 [Mushroom](https://github.com/piitaya/lovelace-mushroom) | Build a beautiful Home Assistant dashboard easily
 [Nintendo Wishlist Card](https://github.com/custom-cards/nintendo-wishlist-card) | Displays a card showing Nintendo Switch games that are on sale from your wish list.
 [Notify Card](https://github.com/bernikr/lovelace-notify-card) | Send notifications directly from the dashboard
-[Scheduler Card](https://github.com/nielsfaber/scheduler-card) | HA Lovelace card for control of scheduler entities
 [Stack In Card](https://github.com/custom-cards/stack-in-card) | 🛠 group multiple cards into one card without the borders
 [Steam Card](https://github.com/mkanet/kb-steam-card-plus) | An enhanced version of the Steam card with builtin support for current custom Roblox integration
 [Tabbed Card](https://github.com/kinghat/tabbed-card) | a custom card for home assistant that utilizes tabs to segregate individual cards.
