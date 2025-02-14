@@ -1,0 +1,30 @@
+homeassistant:
+  customize:
+    sensor.template_imap_content:
+      friendly_name: "IMAP Content"
+
+template:
+  ########## Official - IMAP https://www.home-assistant.io/integrations/imap
+  - trigger:
+      # IMAP Content
+      - platform: event
+        event_type: "imap_content"
+        id: "imap_event"
+
+    sensor:
+      # IMAP Content
+      - name: Template IMAP Content
+        state: "{{ trigger.event.data['subject'] }}"
+        attributes:
+          Message: "{{ trigger.event.data['text'] }}"
+          Server: "{{ trigger.event.data['server'] }}"
+          Username: "{{ trigger.event.data['username'] }}"
+          Search: "{{ trigger.event.data['search'] }}"
+          Folder: "{{ trigger.event.data['folder'] }}"
+          Sender: "{{ trigger.event.data['sender'] }}"
+          Date: "{{ trigger.event.data['date'] }}"
+          Subject: "{{ trigger.event.data['subject'] }}"
+          To: "{{ trigger.event.data['headers'].get('Delivered-To', ['n/a'])[0] }}"
+          Return-Path: "{{ trigger.event.data['headers'].get('Return-Path',['n/a'])[0] }}"
+          Received-first: "{{ trigger.event.data['headers'].get('Received',['n/a'])[0] }}"
+          Received-last: "{{ trigger.event.data['headers'].get('Received',['n/a'])[-1] }}"

@@ -1,0 +1,10 @@
+command_line:
+  - sensor:
+      name: Naver Map URL
+      unique_id: naver_map_url
+      command: >
+        VERSION=$(curl -s 'https://map.pstatic.net/nrb/styles/basic.json?fmt=jpg&mt=bg.ol.ts.ar.lko' |
+        grep -oP '(?<="version":")[^"]*' |
+        head -1) &&
+        echo "https://map.pstatic.net/nrb/styles/basic/${VERSION}/{z}/{x}/{y}@2x.png?mt=bg.ol.ts.ar.lko"
+      scan_interval: 3600

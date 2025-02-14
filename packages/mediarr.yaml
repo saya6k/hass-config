@@ -1,0 +1,30 @@
+sensor:
+  - platform: mediarr
+    plex:  # Optional
+      host: !secret plex_host
+      port: !secret plex_port
+      token: !secret plex_token
+      max_items: 10
+    
+    sonarr:  # Optional
+      url: !secret sonarr_url
+      api_key: !secret sonarr_api_key
+      max_items: 10
+      days_to_check: 60
+    
+    radarr:  # Optional
+      url: !secret radarr_url
+      api_key: !secret radarr_api_key
+      max_items: 10
+
+    trakt:  # Optional
+      client_id: !secret trakt_client_id
+      client_secret: !secret trakt_client_secret
+      tmdb_api_key: !secret tmdb_api_key  # Required for posters
+      trending_type: both  # Options: movies, shows, both
+      max_items: 10
+
+    tmdb:  # Optional
+      api_key: !secret tmdb_api_key
+      trending_type: all  # Options: movie, tv, all
+      max_items: 10

@@ -16,7 +16,7 @@ This is my Home Assistant documentation, updated on 2025-02-14.
 
 I used Home Assistant in 2018 and then migrated to Apple Home.
 
-I started using Home Assistant again in 2022. Now, it has grown significantly, with a total of 1202 entities for now.
+I started using Home Assistant again in 2022. Now, it has grown significantly, with a total of 1180 entities for now.
 
 If you need more insights from my smart home other than auto generated document, Find below:
 
@@ -78,14 +78,14 @@ Domain | Value
 -- | --
 automations | 27
 binary_sensors | 131
-device_trackers | 25
+device_trackers | 7
 lights | 10
 media_players | 16
-sensors | 723
+sensors | 721
 switches | 35
 switches | 35
-others | 235
-**Total** | **1202**
+others | 233
+**Total** | **1180**
 
 
 Component | Version
@@ -105,6 +105,7 @@ Integration | Configuration
 [<img src="https://brands.home-assistant.io/_/seventeentrack/icon.png" height="24"/>](https://brands.home-assistant.io/_/seventeentrack/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/seventeentrack/icon.png" height="24"/>](https://brands.home-assistant.io/_/seventeentrack/icon.png#gh-light-mode-only) [17TRACK](https://home-assistant.io/integrations/seventeentrack) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/alert/icon.png" height="24"/>](https://brands.home-assistant.io/_/alert/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/alert/icon.png" height="24"/>](https://brands.home-assistant.io/_/alert/icon.png#gh-light-mode-only) [alert](https://home-assistant.io/integrations/alert) | [./packages/alerts_and_notifications.yaml](./packages/alerts_and_notifications.yaml)
 [<img src="https://brands.home-assistant.io/_/anthropic/icon.png" height="24"/>](https://brands.home-assistant.io/_/anthropic/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/anthropic/icon.png" height="24"/>](https://brands.home-assistant.io/_/anthropic/icon.png#gh-light-mode-only) [Anthropic Conversation](https://home-assistant.io/integrations/anthropic) | Config flow[^1]
+[<img src="https://brands.home-assistant.io/_/icloud/icon.png" height="24"/>](https://brands.home-assistant.io/_/icloud/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/icloud/icon.png" height="24"/>](https://brands.home-assistant.io/_/icloud/icon.png#gh-light-mode-only) [Apple iCloud](https://home-assistant.io/integrations/icloud) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/apple_tv/icon.png" height="24"/>](https://brands.home-assistant.io/_/apple_tv/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/apple_tv/icon.png" height="24"/>](https://brands.home-assistant.io/_/apple_tv/icon.png#gh-light-mode-only) [Apple TV](https://home-assistant.io/integrations/apple_tv) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/automation/icon.png" height="24"/>](https://brands.home-assistant.io/_/automation/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/automation/icon.png" height="24"/>](https://brands.home-assistant.io/_/automation/icon.png#gh-light-mode-only) [Automation](https://home-assistant.io/integrations/automation) | [./automations.yaml](./automations.yaml)
 [<img src="https://brands.home-assistant.io/_/bluetooth/icon.png" height="24"/>](https://brands.home-assistant.io/_/bluetooth/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/bluetooth/icon.png" height="24"/>](https://brands.home-assistant.io/_/bluetooth/icon.png#gh-light-mode-only) [Bluetooth](https://home-assistant.io/integrations/bluetooth) | Config flow[^1]
@@ -169,7 +170,6 @@ Integration | Configuration
 [<img src="https://brands.home-assistant.io/_/thread/icon.png" height="24"/>](https://brands.home-assistant.io/_/thread/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/thread/icon.png" height="24"/>](https://brands.home-assistant.io/_/thread/icon.png#gh-light-mode-only) [Thread](https://home-assistant.io/integrations/thread) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/time_date/icon.png" height="24"/>](https://brands.home-assistant.io/_/time_date/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/time_date/icon.png" height="24"/>](https://brands.home-assistant.io/_/time_date/icon.png#gh-light-mode-only) [Time & Date](https://home-assistant.io/integrations/time_date) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/todoist/icon.png" height="24"/>](https://brands.home-assistant.io/_/todoist/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/todoist/icon.png" height="24"/>](https://brands.home-assistant.io/_/todoist/icon.png#gh-light-mode-only) [Todoist](https://home-assistant.io/integrations/todoist) | Config flow[^1]
-[<img src="https://brands.home-assistant.io/_/unifi_direct/icon.png" height="24"/>](https://brands.home-assistant.io/_/unifi_direct/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/unifi_direct/icon.png" height="24"/>](https://brands.home-assistant.io/_/unifi_direct/icon.png#gh-light-mode-only) [UniFi AP](https://home-assistant.io/integrations/unifi_direct) | [./packages/unifi_ap_precense.yaml](./packages/unifi_ap_precense.yaml)
 [<img src="https://brands.home-assistant.io/_/uptime/icon.png" height="24"/>](https://brands.home-assistant.io/_/uptime/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/uptime/icon.png" height="24"/>](https://brands.home-assistant.io/_/uptime/icon.png#gh-light-mode-only) [Uptime](https://home-assistant.io/integrations/uptime) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/version/icon.png" height="24"/>](https://brands.home-assistant.io/_/version/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/version/icon.png" height="24"/>](https://brands.home-assistant.io/_/version/icon.png#gh-light-mode-only) [Version](https://home-assistant.io/integrations/version) | Config flow[^1]
 [<img src="https://brands.home-assistant.io/_/withings/icon.png" height="24"/>](https://brands.home-assistant.io/_/withings/dark_icon.png#gh-dark-mode-only)[<img src="https://brands.home-assistant.io/_/withings/icon.png" height="24"/>](https://brands.home-assistant.io/_/withings/icon.png#gh-light-mode-only) [Withings](https://home-assistant.io/integrations/withings) | Config flow[^1]
@@ -229,7 +229,7 @@ Advanced SSH & Web Terminal | 20.0.0 |
 DOODS2 | 1 | 
 ESPHome Device Builder | 2024.12.4 | 
 File editor | 5.8.0 | 
-Firefly iii | 20250205.2-2 | 
+Firefly III | dev | 
 Grocy | 0.23.0 | 
 HomeNetwork for Hillstate | 1.1.6 | 
 iSponsorBlockTV add-on | 2.1.2 | 
@@ -300,9 +300,11 @@ Name | Description
 [Template Entity Row](https://github.com/thomasloven/lovelace-template-entity-row) | 🔹 Display whatever you want in an entities card row.
 [Thermal Comfort Icons](https://github.com/rautesamtr/thermal_comfort_icons) | Thermal Comfort custom icons for Home Assistant to accompany the MDI icons
 
+</details>
+
 ## Themes
 
-</details>
+<details>
 
 Name | Description
 -- | --

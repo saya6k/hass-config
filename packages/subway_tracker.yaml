@@ -1,0 +1,225 @@
+homeassistant:
+  customize:
+    # sensor.subway_seoulnationaluniv_line2_up_now:
+    #   friendly_name: 지하철 서울대입구역 2호선(상행) 이번열차
+    # sensor.subway_seoulnationaluniv_line2_up_next:
+    #   friendly_name: 지하철 서울대입구역 2호선(상행) 다음열차
+    # sensor.subway_seoulnationaluniv_line2_down_now:
+    #   friendly_name: 지하철 서울대입구역 2호선(하행) 이번열차
+    # sensor.subway_seoulnationaluniv_line2_down_next:
+    #   friendly_name: 지하철 서울대입구역 2호선(하행) 다음열차
+    sensor.subway_yangjae_line3_up_now:
+      friendly_name: 지하철 양재역 3호선(상행) 이번열차
+    sensor.subway_yangjae_line3_up_next:
+      friendly_name: 지하철 양재역 3호선(상행) 다음열차
+    sensor.subway_yangjae_line3_down_now:
+      friendly_name: 지하철 양재역 3호선(하행) 이번열차
+    sensor.subway_yangjae_line3_down_next:
+      friendly_name: 지하철 양재역 3호선(하행) 다음열차
+    sensor.subway_gangnam_sinbundang_up_now:
+      friendly_name: 지하철 강남역 신분당선(상행) 이번열차
+    sensor.subway_gangnam_sinbundang_up_next:
+      friendly_name: 지하철 강남역 신분당선(상행) 다음열차
+    sensor.subway_gangnam_sinbundang_down_now:
+      friendly_name: 지하철 강남역 신분당선(하행) 이번열차
+    sensor.subway_gangnam_sinbundang_down_next:
+      friendly_name: 지하철 강남역 신분당선(하행) 다음열차
+    sensor.subway_gangnam_line2_up_now:
+      friendly_name: 지하철 강남역 2호선(상행) 이번열차
+    sensor.subway_gangnam_line2_up_next:
+      friendly_name: 지하철 강남역 2호선(상행) 다음열차
+    sensor.subway_gangnam_line2_down_now:
+      friendly_name: 지하철 강남역 2호선(하행) 이번열차
+    sensor.subway_gangnam_line2_down_next:
+      friendly_name: 지하철 강남역 2호선(하행) 다음열차
+
+command_line:
+  # - sensor:
+  #       name: subway_seoulnationaluniv_line2_up_now
+  #       icon: mdi:subway-variant
+  #       command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0228' | jq -r '.basicInfo.timeInfo.upTimeInfo[0]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+  #       value_template: >
+  #         {% set end = value_json.endStationName %}
+  #         {% set fast = value_json.fastType %}
+  #         {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+  #       json_attributes:
+  #         - afterMinute
+  #       scan_interval: 60
+  # - sensor:
+  #       name: subway_seoulnationaluniv_line2_up_next
+  #       icon: mdi:subway-variant
+  #       command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0228' | jq -r '.basicInfo.timeInfo.upTimeInfo[1]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+  #       value_template: >
+  #         {% set end = value_json.endStationName %}
+  #         {% set fast = value_json.fastType %}
+  #         {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+  #       json_attributes:
+  #         - afterMinute
+  #       scan_interval: 60  
+  # - sensor:
+  #       name: subway_seoulnationaluniv_line2_down_now
+  #       icon: mdi:subway-variant
+  #       command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0228' | jq -r '.basicInfo.timeInfo.downTimeInfo[0]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+  #       # value_template: "{{ value_json.endStationName }}"
+  #       value_template: >
+  #         {% if value_json.endStationName and value_json.endStationName | length > 0 %}
+  #           {{ value_json.endStationName }}
+  #         {% else %}
+  #           정보 없음
+  #         {% endif %}
+  #       json_attributes:
+  #         - afterMinute
+  #       scan_interval: 60
+  # - sensor:
+  #       name: subway_seoulnationaluniv_line2_down_next
+  #       icon: mdi:subway-variant
+  #       command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0228' | jq -r '.basicInfo.timeInfo.downTimeInfo[1]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+  #       # value_template: "{{ value_json.endStationName }}"
+  #       value_template: >
+  #         {% if value_json.endStationName and value_json.endStationName | length > 0 %}
+  #           {{ value_json.endStationName }}
+  #         {% else %}
+  #           정보 없음
+  #         {% endif %}
+  #       json_attributes:
+  #         - afterMinute
+  #       scan_interval: 60
+
+  # 양재역 3호선
+  - sensor:
+        name: subway_yangjae_line3_up_now
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0332' | jq -r '.basicInfo.timeInfo.upTimeInfo[0]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60
+  - sensor:
+        name: subway_yangjae_line3_up_next
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0332' | jq -r '.basicInfo.timeInfo.upTimeInfo[1]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60      
+  - sensor:
+        name: subway_yangjae_line3_down_now
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0332' | jq -r '.basicInfo.timeInfo.downTimeInfo[0]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60
+  - sensor:
+        name: subway_yangjae_line3_down_next
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0332' | jq -r '.basicInfo.timeInfo.downTimeInfo[1]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60
+
+  # 강남역 신분당선
+  - sensor:
+        name: subway_gangnam_sinbundang_up_now
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES3401' | jq -r '.basicInfo.timeInfo.upTimeInfo[0]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60
+  - sensor:
+        name: subway_gangnam_sinbundang_up_next
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES3401' | jq -r '.basicInfo.timeInfo.upTimeInfo[1]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60
+  - sensor:
+        name: subway_gangnam_sinbundang_down_now
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES3401' | jq -r '.basicInfo.timeInfo.downTimeInfo[0]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60
+  - sensor:
+        name: subway_gangnam_sinbundang_down_next
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES3401' | jq -r '.basicInfo.timeInfo.downTimeInfo[1]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60
+
+  # 강남역 2호선
+  - sensor:
+        name: subway_gangnam_line2_up_now
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0222' | jq -r '.basicInfo.timeInfo.upTimeInfo[0]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60
+  - sensor:
+        name: subway_gangnam_line2_up_next
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0222' | jq -r '.basicInfo.timeInfo.upTimeInfo[1]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60
+
+  - sensor:
+        name: subway_gangnam_line2_down_now
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0222' | jq -r '.basicInfo.timeInfo.downTimeInfo[0]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60
+  - sensor:
+        name: subway_gangnam_line2_down_next
+        icon: mdi:subway-variant
+        command: "curl -s 'https://place.map.kakao.com/m/main/v/SES0222' | jq -r '.basicInfo.timeInfo.downTimeInfo[1]'" #/v/뒤 숫자만 변경, [0] 이 숫자는 링크 들어가서 원하는 걸로 변경 보통 4가지로 나옴, 0과 2는 바로 다음열차, 1과 3은 그 다음 열차 주의) upTimeInfo와 downTimeInfo가 있습니다.
+        value_template: >
+          {% set end = value_json.endStationName %}
+          {% set fast = value_json.fastType %}
+          {% if fast %}{% if fast == '급행' %}(급){% elif fast == '특급' %}(특){% endif %}{% endif %}{{ end }}
+        json_attributes:
+          - afterMinute
+        scan_interval: 60

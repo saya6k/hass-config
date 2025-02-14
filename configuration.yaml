@@ -15,7 +15,7 @@
 homeassistant:
   packages: !include_dir_named ./packages/
   allowlist_external_dirs:
-    - /config/docs/snapshots
+    - /config/www
 
 ####################################################
 #                                                  #
@@ -327,3 +327,4 @@ command_line:
 
 shell_command:
   purge_log: truncate -s 0 /config/home-assistant.log
+  git_push: git add . && git commit -m "Update Config" && git push -u origin main

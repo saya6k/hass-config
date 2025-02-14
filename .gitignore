@@ -2,31 +2,32 @@
 # An * ensures that everything will be ignored.
 *
 # You can whitelist files/folders with !, these will not be ignored.
-!*.yaml
-!.gitignore
-!*.md
-!.sh
 
-# Ignore folders.
-.ssh/
-.storage
-.cloud
-.github/
-.google.token
-custom_components/
-esphome/
-notebooks/
-o365_storage/
-templates/
-tts/
+# Folders
+!docs
+!www
+!packages
 
-# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
-.shopping_list.json
-.rnd
-frigate.yaml
-ip_bans.yaml
-secrets.yaml
-known_devices.yaml
-home-assistant*.log*
-*.log
-id_rsa*
+# Files
+
+!docs/dashboards.md
+
+# !packages/alerts_and_notifications.yaml
+!packages/domain_counter.yaml
+!packages/doods_image_processing.yaml
+!packages/imap_content.yaml
+!packages/mediarr.yaml
+!packages/naver_map_url.yaml
+!packages/subway_tracker.yaml
+!packages/weather_teukbo.yaml
+
+!www/floorplan.jpg
+!www/lovelace.jpg
+
+!automations.yaml
+!configuration.yaml
+!LICENSE
+!README.md
+!scenes.yaml
+!scripts.yaml
+!ui-lovelace.yaml

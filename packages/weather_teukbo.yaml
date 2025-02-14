@@ -1,0 +1,212 @@
+homeassistant:
+  customize:
+    sensor.seoul_teukbo_gust_alert:
+      friendly_name: 서울 기상특보 강풍
+      icon: mdi:weather-windy
+    sensor.seoul_teukbo_downpour_alert:
+      friendly_name: 서울 기상특보 호우
+      icon: mdi:weather-pouring
+    sensor.seoul_teukbo_cold_alert:
+      friendly_name: 서울 기상특보 한파
+      icon: mdi:snowflake-alert
+    sensor.seoul_teukbo_dry_alert:
+      friendly_name: 서울 기상특보 건조
+      icon: mdi:water-percent-alert
+    sensor.seoul_teukbo_typhoon_alert:
+      friendly_name: 서울 기상특보 태풍
+      icon: mdi:weather-hurricane-outline
+    sensor.seoul_teukbo_snow_alert:
+      friendly_name: 서울 기상특보 대설
+      icon: mdi:weather-snowy-heavy
+    sensor.seoul_teukbo_dust_alert:
+      friendly_name: 서울 기상특보 황사
+      icon: mdi:weather-dust
+    sensor.seoul_teukbo_heat_alert:
+      friendly_name: 서울 기상특보 폭염
+      icon: mdi:weather-sunny-alert
+
+sensor:
+
+  # 강풍
+  - platform: rest
+    name: Seoul Teukbo Gust Alert
+    resource_template: http://apis.data.go.kr/1360000/WthrWrnInfoService/getPwnCd?serviceKey=Om7cXQPZsel9KMm0BJk%2BFKBCAvBTGD1jzieO6O1LrA8EaBkcFMLNPRvNUEukWheBnBwBYh5AoZQi2wrNFBBn7g%3D%3D&numOfRows=10&pageNo=1&areaCode=L1100100&warningType=1&dataType=json
+    json_attributes_path: "$.response.body.items.item.[0]"
+    json_attributes:
+      - "startTime"
+      - "endTime"
+      - "warnStress"
+      - "warnVar"
+      - "cancel"
+    value_template: >
+      {% if value_json["response"]["header"]["resultCode"] == '00' and value_json["response"]["body"]["items"]["item"][0].command == "1" and value_json["response"]["body"]["items"]["item"][0].cancel == "0" %}
+        {% if strptime(value_json["response"]["body"]["items"]["item"][0].startTime | string, '%Y%m%d%H%M') | as_timestamp < now() | as_timestamp %}
+          {{ '주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '경보' }}
+        {% else %}
+          {{ '곧 주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '곧 경보' }}
+        {% endif %}
+      {% else %}
+        없음
+      {% endif %}
+    scan_interval: 900
+
+  # 호우
+  - platform: rest
+    name: Seoul Teukbo Downpour Alert
+    resource_template: http://apis.data.go.kr/1360000/WthrWrnInfoService/getPwnCd?serviceKey=Om7cXQPZsel9KMm0BJk%2BFKBCAvBTGD1jzieO6O1LrA8EaBkcFMLNPRvNUEukWheBnBwBYh5AoZQi2wrNFBBn7g%3D%3D&numOfRows=10&pageNo=1&areaCode=L1100100&warningType=2&dataType=json
+    json_attributes_path: "$.response.body.items.item.[0]"
+    json_attributes:
+      - "startTime"
+      - "endTime"
+      - "warnStress"
+      - "warnVar"
+      - "cancel"
+    value_template: >
+      {% if value_json["response"]["header"]["resultCode"] == '00' and value_json["response"]["body"]["items"]["item"][0].command == "1" and value_json["response"]["body"]["items"]["item"][0].cancel == "0" %}
+        {% if strptime(value_json["response"]["body"]["items"]["item"][0].startTime | string, '%Y%m%d%H%M') | as_timestamp < now() | as_timestamp %}
+          {{ '주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '경보' }}
+        {% else %}
+          {{ '곧 주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '곧 경보' }}
+        {% endif %}
+      {% else %}
+        없음
+      {% endif %}
+    scan_interval: 900
+
+  # 한파
+  - platform: rest
+    name: Seoul Teukbo Cold Alert
+    resource_template: http://apis.data.go.kr/1360000/WthrWrnInfoService/getPwnCd?serviceKey=Om7cXQPZsel9KMm0BJk%2BFKBCAvBTGD1jzieO6O1LrA8EaBkcFMLNPRvNUEukWheBnBwBYh5AoZQi2wrNFBBn7g%3D%3D&numOfRows=10&pageNo=1&areaCode=L1100100&warningType=3&dataType=json
+    json_attributes_path: "$.response.body.items.item.[0]"
+    json_attributes:
+      - "startTime"
+      - "endTime"
+      - "warnStress"
+      - "warnVar"
+      - "cancel"
+    value_template: >
+      {% if value_json["response"]["header"]["resultCode"] == '00' and value_json["response"]["body"]["items"]["item"][0].command == "1" and value_json["response"]["body"]["items"]["item"][0].cancel == "0" %}
+        {% if strptime(value_json["response"]["body"]["items"]["item"][0].startTime | string, '%Y%m%d%H%M') | as_timestamp < now() | as_timestamp %}
+          {{ '주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '경보' }}
+        {% else %}
+          {{ '곧 주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '곧 경보' }}
+        {% endif %}
+      {% else %}
+        없음
+      {% endif %}
+    scan_interval: 900
+
+  # 건조
+  - platform: rest
+    name: Seoul Teukbo Dry Alert
+    resource_template: http://apis.data.go.kr/1360000/WthrWrnInfoService/getPwnCd?serviceKey=Om7cXQPZsel9KMm0BJk%2BFKBCAvBTGD1jzieO6O1LrA8EaBkcFMLNPRvNUEukWheBnBwBYh5AoZQi2wrNFBBn7g%3D%3D&numOfRows=10&pageNo=1&areaCode=L1100100&warningType=4&dataType=json
+    json_attributes_path: "$.response.body.items.item.[0]"
+    json_attributes:
+      - "startTime"
+      - "endTime"
+      - "warnStress"
+      - "warnVar"
+      - "cancel"
+    value_template: >
+      {% if value_json["response"]["header"]["resultCode"] == '00' and value_json["response"]["body"]["items"]["item"][0].command == "1" and value_json["response"]["body"]["items"]["item"][0].cancel == "0" %}
+        {% if strptime(value_json["response"]["body"]["items"]["item"][0].startTime | string, '%Y%m%d%H%M') | as_timestamp < now() | as_timestamp %}
+          {{ '주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '경보' }}
+        {% else %}
+          {{ '곧 주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '곧 경보' }}
+        {% endif %}
+      {% else %}
+        없음
+      {% endif %}
+    scan_interval: 900
+
+  # 태풍
+  - platform: rest
+    name: Seoul Teukbo Typhoon Alert
+    resource_template: http://apis.data.go.kr/1360000/WthrWrnInfoService/getPwnCd?serviceKey=Om7cXQPZsel9KMm0BJk%2BFKBCAvBTGD1jzieO6O1LrA8EaBkcFMLNPRvNUEukWheBnBwBYh5AoZQi2wrNFBBn7g%3D%3D&numOfRows=10&pageNo=1&areaCode=L1100100&warningType=7&dataType=json
+    json_attributes_path: "$.response.body.items.item.[0]"
+    json_attributes:
+      - "startTime"
+      - "endTime"
+      - "warnStress"
+      - "warnVar"
+      - "cancel"
+    value_template: >
+      {% if value_json["response"]["header"]["resultCode"] == '00' and value_json["response"]["body"]["items"]["item"][0].command == "1" and value_json["response"]["body"]["items"]["item"][0].cancel == "0" %}
+        {% if strptime(value_json["response"]["body"]["items"]["item"][0].startTime | string, '%Y%m%d%H%M') | as_timestamp < now() | as_timestamp %}
+          {{ '주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '경보' }}
+        {% else %}
+          {{ '곧 주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '곧 경보' }}
+        {% endif %}
+      {% else %}
+        없음
+      {% endif %}
+    scan_interval: 900
+
+  # 폭설
+  - platform: rest
+    name: Seoul Teukbo Snow Alert
+    resource_template: http://apis.data.go.kr/1360000/WthrWrnInfoService/getPwnCd?serviceKey=Om7cXQPZsel9KMm0BJk%2BFKBCAvBTGD1jzieO6O1LrA8EaBkcFMLNPRvNUEukWheBnBwBYh5AoZQi2wrNFBBn7g%3D%3D&numOfRows=10&pageNo=1&areaCode=L1100100&warningType=8&dataType=json
+    json_attributes_path: "$.response.body.items.item.[0]"
+    json_attributes:
+      - "startTime"
+      - "endTime"
+      - "warnStress"
+      - "warnVar"
+      - "cancel"
+    value_template: >
+      {% if value_json["response"]["header"]["resultCode"] == '00' and value_json["response"]["body"]["items"]["item"][0].command == "1" and value_json["response"]["body"]["items"]["item"][0].cancel == "0" %}
+        {% if strptime(value_json["response"]["body"]["items"]["item"][0].startTime | string, '%Y%m%d%H%M') | as_timestamp < now() | as_timestamp %}
+          {{ '주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '경보' }}
+        {% else %}
+          {{ '곧 주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '곧 경보' }}
+        {% endif %}
+      {% else %}
+        없음
+      {% endif %}
+    scan_interval: 900
+
+  # 황사
+  - platform: rest
+    name: Seoul Teukbo Dust Alert
+    resource_template: http://apis.data.go.kr/1360000/WthrWrnInfoService/getPwnCd?serviceKey=Om7cXQPZsel9KMm0BJk%2BFKBCAvBTGD1jzieO6O1LrA8EaBkcFMLNPRvNUEukWheBnBwBYh5AoZQi2wrNFBBn7g%3D%3D&numOfRows=10&pageNo=1&areaCode=L1100100&warningType=9&dataType=json
+    json_attributes_path: "$.response.body.items.item.[0]"
+    json_attributes:
+      - "startTime"
+      - "endTime"
+      - "warnStress"
+      - "warnVar"
+      - "cancel"
+    value_template: >
+      {% if value_json["response"]["header"]["resultCode"] == '00' and value_json["response"]["body"]["items"]["item"][0].command == "1" and value_json["response"]["body"]["items"]["item"][0].cancel == "0" %}
+        {% if strptime(value_json["response"]["body"]["items"]["item"][0].startTime | string, '%Y%m%d%H%M') | as_timestamp < now() | as_timestamp %}
+          {{ '주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '경보' }}
+        {% else %}
+          {{ '곧 주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '곧 경보' }}
+        {% endif %}
+      {% else %}
+        없음
+      {% endif %}
+    scan_interval: 900
+
+  # 폭염
+  - platform: rest
+    name: Seoul Teukbo Heat Alert
+    resource_template: http://apis.data.go.kr/1360000/WthrWrnInfoService/getPwnCd?serviceKey=Om7cXQPZsel9KMm0BJk%2BFKBCAvBTGD1jzieO6O1LrA8EaBkcFMLNPRvNUEukWheBnBwBYh5AoZQi2wrNFBBn7g%3D%3D&numOfRows=10&pageNo=1&areaCode=L1100100&warningType=12&dataType=json
+    json_attributes_path: "$.response.body.items.item.[0]"
+    json_attributes:
+      - "startTime"
+      - "endTime"
+      - "warnStress"
+      - "warnVar"
+      - "cancel"
+    value_template: >
+      {% if value_json["response"]["header"]["resultCode"] == '00' and value_json["response"]["body"]["items"]["item"][0].command == "1" and value_json["response"]["body"]["items"]["item"][0].cancel == "0" %}
+        {% if strptime(value_json["response"]["body"]["items"]["item"][0].startTime | string, '%Y%m%d%H%M') | as_timestamp < now() | as_timestamp %}
+          {{ '주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '경보' }}
+        {% else %}
+          {{ '곧 주의' if value_json["response"]["body"]["items"]["item"][0].warnStress == 0 else '곧 경보' }}
+        {% endif %}
+      {% else %}
+        없음
+      {% endif %}
+    scan_interval: 900        

@@ -1,0 +1,301 @@
+'1714009131244':
+  alias: 'ESPHome: Update All Devices'
+  sequence:
+  - repeat:
+      for_each: '{{ states.update | selectattr(''state'', ''eq'', ''on'') | map(attribute=''entity_id'')
+        | select(''in'', integration_entities(''esphome'')) | list }} '
+      sequence:
+      - action: update.install
+        data: {}
+        target:
+          entity_id: '{{ repeat.item }}'
+      - wait_template: '{{ is_state(repeat.item, ''off'') }}'
+        continue_on_timeout: true
+  mode: single
+  icon: si:esphome
+turn_off_all_lights:
+  alias: Turn Off All Lights
+  sequence:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - light.all_lights
+  description: ''
+ring_morning_song:
+  alias: Ring Morning Song
+  sequence:
+  - metadata: {}
+    data:
+      volume_level: 0.6
+    target:
+      entity_id:
+      - media_player.living_room
+    action: media_player.volume_set
+  - data:
+      media_content_id: library://playlist/1
+      media_content_type: playlist
+      enqueue: replace
+    target:
+      entity_id:
+      - media_player.living_room
+    action: media_player.play_media
+  description: ''
+gpt_multiple_calendar_agenda_notifications:
+  alias: 'GPT: Multiple Calendar Agenda Notifications'
+  description: ''
+  sequence:
+  - variables:
+      weather_entity: weather.wn_seoul
+      calendar_number: three
+      calendar_entity_1: calendar.gaein
+      calendar_entity_2: calendar.south_korea
+      calendar_entity_3: calendar.ical_lol_esports
+      notify_number: one
+      zone_entity: zone.home
+      calendar_duration:
+        hours: 18
+      prompt: "Please generate korean text for a notification that will be sent to
+        the users smartphone with helpful information.\nYou are a helpful personal
+        agent that generates text for the user: - Your answers are helpful, friendly,
+        warm, insightful. - Your answers are not technical, and do not include Home
+        Assistant internal details such as entities in responses. - Your messages
+        help the user prepare for their day, for example:\n  - Each calendar belongs
+        to a different person, use the calendar name to refer to them, provide individual
+        recommendations for each calendar, and make special remarks if some events
+        match in time and the title or description makes a mention between calendars\n
+        \ - Making note of unusual weather for the location and time of year (but
+        not mundane details like \"0% chance of precipitation\")\n  - How much time
+        remaining until their first meeting\n  - Anything that may be special or unique,
+        such as celebrating a birthday"
+  - alias: Fetch First Calendar Agenda
+    data:
+      duration:
+        hours: 18
+    response_variable: agenda_1
+    action: calendar.get_events
+    target:
+      entity_id: calendar.gaein
+  - if:
+    - condition: template
+      value_template: '{{ (calendar_number == ''two'') or (calendar_number == ''three'')
+        }}'
+    then:
+    - alias: Fetch Second Calendar Agenda
+      data:
+        duration:
+          hours: 18
+      response_variable: agenda_2
+      action: calendar.get_events
+      target:
+        entity_id: calendar.south_korea
+  - if:
+    - condition: template
+      value_template: '{{ calendar_number == ''three''}}'
+    then:
+    - alias: Fetch Third Calendar Agenda
+      data:
+        duration:
+          hours: 18
+      response_variable: agenda_3
+      action: calendar.get_events
+      target:
+        entity_id: calendar.ical_lol_esports
+  - alias: Fetch Weather Forecast
+    data:
+      type: hourly
+    target:
+      entity_id:
+      - '{{ weather_entity }}'
+    response_variable: daily_forecast
+    action: weather.get_forecasts
+  - variables:
+      forecast_entity: '{{ daily_forecast[weather_entity] }}'
+      forecast: '{{ forecast_entity.forecast[0] }}'
+  - alias: Conversation Agent Notification Text
+    data:
+      text: "Time: {{ now().strftime(\"%A %B %d %H:%M %p\") }}\n{%- if zone_entity
+        is defined %} Latitude: {{ state_attr(zone_entity, 'latitude') | round(1)
+        }} Longitude: {{ state_attr(zone_entity, 'longitude') | round(1) }} {% endif
+        %}\n{%- if weather_entity is defined %}         {%- set temperature_unit =
+        state_attr(weather_entity, 'temperature_unit') -%} Forecast: {{ forecast.condition
+        }} ({{ forecast.temperature }}{{ temperature_unit }}, {{ forecast.precipitation
+        }}% precipitation) {%- endif %}\nCalendar \"{{ state_attr(calendar_entity_1,
+        'friendly_name') }}\" events for the next {{ calendar_duration.hours }} hours:
+        {%- set agenda = (agenda_1 | items | first)[1] %} {%- if agenda.events %}\n
+        \ {%- for event in agenda.events %}\n  - Summary: {{ event.summary }}\n    Start-End:
+        {% if event.start is defined %}{{ event.start }} to {{ event.end }}{% else
+        %}All Day{% endif %}\n    {%- if event.description is defined %}\n    Description:
+        {{ event.description }}\n    {% endif -%}\n    {%- if event.location is defined
+        %}\n      Location: {{ event.location }}\n    {% endif -%}\n  {%- endfor %}\n{%-
+        else %}\n  - No upcoming events.\n{%- endif %}\n{%- if (calendar_number ==
+        \"two\") or (calendar_number == \"three\") %} Calendar \"{{ state_attr(calendar_entity_2,
+        'friendly_name') }}\" events for the next {{ calendar_duration.hours }} hours:\n
+        \ {%- set agenda = (agenda_2 | items | first)[1] %}\n  {%- if agenda.events
+        %}\n    {%- for event in agenda.events %}\n    - Summary: {{ event.summary
+        }}\n      Start-End: {% if event.start is defined %}{{ event.start }} to {{
+        event.end }}{% else %}All Day{% endif %}\n      {%- if event.description is
+        defined %}\n      Description: {{ event.description }}\n      {% endif -%}\n
+        \     {%- if event.location is defined %}\n        Location: {{ event.location
+        }}\n      {% endif -%}\n    {%- endfor %}\n  {%- else %}\n    - No upcoming
+        events.\n  {%- endif %}\n{%- endif %}\n{%- if (calendar_number == \"three\")
+        %} Calendar \"{{ state_attr(calendar_entity_3, 'friendly_name') }}\" events
+        for the next {{ calendar_duration.hours }} hours:\n  {%- set agenda = (agenda_3
+        | items | first)[1] %}\n  {%- if agenda.events %}\n    {%- for event in agenda.events
+        %}\n    - Summary: {{ event.summary }}\n      Start-End: {% if event.start
+        is defined %}{{ event.start }} to {{ event.end }}{% else %}All Day{% endif
+        %}\n      {%- if event.description is defined %}\n      Description: {{ event.description
+        }}\n      {% endif -%}\n      {%- if event.location is defined %}\n        Location:
+        {{ event.location }}\n      {% endif -%}\n    {%- endfor %}\n  {%- else %}\n
+        \   - No upcoming events.\n  {%- endif %}\n{%- endif %}\n{{ prompt }}"
+      agent_id: conversation.gemini_2_0_flash
+    response_variable: agent
+    action: conversation.process
+  - action: tts.speak
+    metadata: {}
+    data:
+      cache: false
+      media_player_entity_id: media_player.living_room
+      language: ko
+      message: '{{ agent.response.speech.plain.speech }}'
+    target:
+      entity_id: tts.elevenlabs
+  - if:
+    - condition: template
+      value_template: '{{ (notify_number == ''two'') or (notify_number == ''three'')
+        }}'
+    then:
+    - alias: Send notification
+      data:
+        title: '{{ now().strftime(''%A'') }} Agenda'
+        message: '{{ agent.response.speech.plain.speech }}'
+      action: notify.notify
+  - if:
+    - condition: template
+      value_template: '{{ notify_number == ''three''}}'
+    then:
+    - alias: Send notification
+      data:
+        title: '{{ now().strftime(''%A'') }} Agenda'
+        message: '{{ agent.response.speech.plain.speech }}'
+      action: notify.notify_3
+  mode: single
+grocy_add_product_purchase_to_stock:
+  sequence:
+  - action: grocy.add_product_to_stock
+    metadata: {}
+    data:
+      amount: '{{ amount }}'
+      product_id: '{{ product_id }}'
+  fields:
+    product_id:
+      selector:
+        number:
+          step: 1
+          min: 1
+          max: 500
+      name: Purchase Product
+      description: ID given by Grocy to Product you purchase
+      required: true
+    amount:
+      selector:
+        number:
+          min: 1
+          step: 1
+          max: 100
+      name: Amount
+      description: Amount you have purchased
+      default: 1
+      required: true
+  alias: Grocy Add Product Purchase to Stock
+  description: Script to input purchased product to Grocy Stock
+grocy_consume_product_from_stock:
+  sequence:
+  - action: grocy.consume_product_from_stock
+    metadata: {}
+    data:
+      amount: '{{ amount }}'
+      product_id: '{{ product_id }}'
+      spoiled: false
+      allow_subproduct_substitution: true
+  fields:
+    product_id:
+      selector:
+        number:
+          step: 1
+          min: 1
+          max: 500
+      name: Consume Product
+      description: ID given by Grocy to Consume Product
+      required: true
+    amount:
+      selector:
+        number:
+          min: 1
+          step: 1
+          max: 100
+      name: Amount
+      description: Amount you have purchased
+      default: 1
+      required: true
+  alias: Grocy Consume Product from Stock
+  description: Script to input consumed product from Grocy Stock
+grocy_remove_spoiled_product_from_stock:
+  sequence:
+  - action: grocy.consume_product_from_stock
+    metadata: {}
+    data:
+      amount: '{{ amount }}'
+      product_id: '{{ product_id }}'
+      spoiled: true
+      allow_subproduct_substitution: true
+      transaction_type: CONSUME
+  fields:
+    product_id:
+      selector:
+        number:
+          step: 1
+          min: 1
+          max: 500
+      name: Consume Product
+      description: ID given by Grocy to Consume Product
+      required: true
+    amount:
+      selector:
+        number:
+          min: 1
+          step: 1
+          max: 100
+      name: Amount
+      description: Amount you have purchased
+      default: 1
+      required: true
+  alias: Grocy Remove Spoiled Product from Stock
+  description: Script to remove Spoiled product from Grocy Stock
+llm_script_for_music_assitant_voice_requests:
+  alias: LLM Script for Music Assitant voice requests
+  use_blueprint:
+    path: music-assistant/llm_voice_script.yaml
+  description: 'This script is used to play music based on a voice request. The tool
+    takes the following arguments: media_type, artist, album, media_id, radio_mode,
+    area. media_id, media_type are always required and must always be supplied as
+    arguments to this tool. An area or Music Assistant media player can optionally
+    be provided in the voice request as well. Use the parameters as described in the
+    description of each parameter. Use this tool whenever the user requests to play
+    music.
+
+    '
+17track_archive_all_arrived_packages:
+  sequence:
+  - repeat:
+      for_each: '{{ state_attr("sensor.17track_packages_delivered", "packages") |
+        map(attribute="tracking_number") | list }}'
+      sequence:
+      - data:
+          config_entry_id: f7e51c74066b2ffda66d5ee83c8e703c
+          package_tracking_number: '{{ repeat.item }}'
+        action: seventeentrack.archive_package
+        metadata: {}
+  alias: 17Track Archive All Arrived packages
+  description: ''
