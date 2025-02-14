@@ -34,7 +34,7 @@ ring_morning_song:
       - media_player.living_room
     action: media_player.volume_set
   - data:
-      media_content_id: library://playlist/1
+      media_content_id: Spotify://playlist/37i9dQZEVXcF14wWEMS3xo
       media_content_type: playlist
       enqueue: replace
     target:

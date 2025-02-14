@@ -58,15 +58,15 @@ If you need more insights from my smart home other than auto generated document,
   </tr>
   <tr>
     <td>
-      <img alt="Monitoring Dashboard" src="docs/snapshots/lovelace.jpg"><br>
+      <img alt="Monitoring Dashboard" src="www/lovelace.jpg"><br>
       Lovelace Dashboard
     </td>
     <td>
-      <img alt="Zigbee Network Visualization" src="docs/snapshots/zigbee-network.png"><br>
-      Zigbee Network Visualization
+      <img alt="Zigbee Network Visualization" src="www/network-map.png"><br>
+      Network Visualization
     </td>
     <td>
-      <img alt="Energy Dashboard" src="docs/snapshots/lovelace-energy.png"><br>
+      <img alt="Energy Dashboard" src="www/lovelace-energy.png"><br>
       Energy Dashboard
     </td>
   </tr>
